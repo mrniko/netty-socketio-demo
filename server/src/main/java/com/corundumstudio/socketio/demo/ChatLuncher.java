@@ -3,7 +3,7 @@ package com.corundumstudio.socketio.demo;
 import com.corundumstudio.socketio.listener.*;
 import com.corundumstudio.socketio.*;
 
-public class Luncher {
+public class ChatLuncher {
 
     public static void main(String[] args) throws InterruptedException {
 
