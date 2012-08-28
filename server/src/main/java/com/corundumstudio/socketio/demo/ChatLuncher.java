@@ -12,9 +12,9 @@ public class ChatLuncher {
         config.setPort(9092);
 
         final SocketIOServer server = new SocketIOServer(config);
-        server.addJsonObjectListener(new DataListener<Object>() {
+        server.addJsonObjectListener(ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, Object data) {
+            public void onData(SocketIOClient client, ChatObject data) {
                 // broadcast messages to all clients
                 server.getBroadcastOperations().sendJsonObject(data);
             }

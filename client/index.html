@@ -49,7 +49,19 @@
 		
 		function sendMessage() {
                         var message = $('#msg').val();
-                        socket.json.send({userName: userName, message: message});
+                        
+                        // don't forget to define type field '@class' 
+                        // it should equals to class name which used 
+                        // to deserialize object on server side
+                        // via ...addJsonObjectListener() method
+                        //
+                        // TIP: you can customize type name field
+                        // via Configuration.jsonTypeFieldName property
+                        
+                        var jsonObject = {'@class': 'com.corundumstudio.socketio.demo.ChatObject',
+                                          userName: userName, 
+                                          message: message};
+                        socket.json.send(jsonObject);
 		}
 		
 		function output(message) {

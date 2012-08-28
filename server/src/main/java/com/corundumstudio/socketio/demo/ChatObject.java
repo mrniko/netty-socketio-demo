@@ -1,6 +1,6 @@
 package com.corundumstudio.socketio.demo;
 
-public class ChatEvent {
+public class ChatObject {
 
     private String userName;
     private String message;

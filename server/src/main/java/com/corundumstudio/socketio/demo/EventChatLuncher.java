@@ -14,9 +14,9 @@ public class EventChatLuncher {
         config.setPort(9092);
 
         final SocketIOServer server = new SocketIOServer(config);
-        server.addEventListener("chatevent", ChatEvent.class, new DataListener<ChatEvent>() {
+        server.addEventListener("chatevent", ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, ChatEvent data) {
+            public void onData(SocketIOClient client, ChatObject data) {
                 server.getBroadcastOperations().sendEvent("chatevent", data);
             }
         });
