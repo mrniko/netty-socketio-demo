@@ -9,6 +9,7 @@
  <inceptionYear>2012</inceptionYear>
 
  <properties>
+     <main.class>com.corundumstudio.socketio.demo.ChatLuncher</main.class>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  </properties>
 
@@ -60,7 +61,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>com.corundumstudio.socketio.demo.ChatLuncher</mainClass>
+          <mainClass>${main.class}</mainClass>
         </configuration>
       </plugin>
       <plugin>

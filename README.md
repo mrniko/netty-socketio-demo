@@ -5,10 +5,35 @@ Demo for Netty-socketio project.
 #Usage example
 
 1. Build or install Netty-socketio lib to your maven repository.
+   `mvn clean install`
+
 2. Switch to /server folder and build server by maven.
-3. Run server by follow command: mvn exec:java
+
+3. Run server by command
+   `mvn exec:java`
+
 4. Run client in browser, by opening* file /client/index.html
 
 * If you want to open index.html in Chrome browser you need to host it somewhere (nginx, for example),
- because of absence of "origin" http header in this case.
+ or page will not work due to absence of correct "origin" http header.
+
+#Demo scenarios
+
+By default you will run a chat which communcate with server via json objects.
+There are several demo scenarios available:
+
+ Class                                                  Web client page
+
+ com.corundumstudio.socketio.demo.ChatLuncher           /client/index.html
+
+ com.corundumstudio.socketio.demo.EventChatLuncher      /client/event-index.html
+
+ com.corundumstudio.socketio.demo.SslChatLuncher        /client/ssl-event-index.html
+
+
+You can select appropriate server luncher by command with `main.class` parameter:
+
+ `mvn exec:java -Dmain.class=com.corundumstudio.socketio.demo.SslChatLuncher`
+
+
    
