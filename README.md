@@ -31,9 +31,9 @@ There are several demo scenarios available:
  com.corundumstudio.socketio.demo.SslChatLauncher        /client/ssl-event-index.html
 
 
-You can select appropriate server luncher by command with `main.class` parameter:
+You can select appropriate server launcher by command with `main.class` parameter:
 
- `mvn exec:java -Dmain.class=com.corundumstudio.socketio.demo.SslChatLuncher`
+ `mvn exec:java -Dmain.class=com.corundumstudio.socketio.demo.SslChatLauncher`
 
 
    
