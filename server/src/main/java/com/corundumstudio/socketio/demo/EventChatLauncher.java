@@ -5,7 +5,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 
-public class EventChatLuncher {
+public class EventChatLauncher {
 
     public static void main(String[] args) throws InterruptedException {
 

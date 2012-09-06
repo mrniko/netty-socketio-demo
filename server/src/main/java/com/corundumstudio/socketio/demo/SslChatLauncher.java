@@ -7,7 +7,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 
-public class SslChatLuncher {
+public class SslChatLauncher {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -16,7 +16,7 @@ public class SslChatLuncher {
         config.setPort(10443);
 
         config.setKeyStorePassword("test1234");
-        InputStream stream = SslChatLuncher.class.getResourceAsStream("/keystore.jks");
+        InputStream stream = SslChatLauncher.class.getResourceAsStream("/keystore.jks");
         config.setKeyStore(stream);
 
         final SocketIOServer server = new SocketIOServer(config);

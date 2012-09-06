@@ -24,11 +24,11 @@ There are several demo scenarios available:
 
  Class                                                  Web client page
 
- com.corundumstudio.socketio.demo.ChatLuncher           /client/index.html
+ com.corundumstudio.socketio.demo.ChatLauncher           /client/index.html
 
- com.corundumstudio.socketio.demo.EventChatLuncher      /client/event-index.html
+ com.corundumstudio.socketio.demo.EventChatLauncher      /client/event-index.html
 
- com.corundumstudio.socketio.demo.SslChatLuncher        /client/ssl-event-index.html
+ com.corundumstudio.socketio.demo.SslChatLauncher        /client/ssl-event-index.html
 
 
 You can select appropriate server luncher by command with `main.class` parameter:
