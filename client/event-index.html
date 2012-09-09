@@ -49,12 +49,12 @@
 		
 		function sendMessage() {
                         var message = $('#msg').val();
+                        $('#msg').val('');
                         socket.emit('chatevent', {userName: userName, message: message});
-                        //socket.json.send({userName: userName, message: message});
 		}
 		
 		function output(message) {
-                        var currentTime = "<span class='time'>" +  moment().format('HH:MM:ss.SSS') + "</span>";
+                        var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
                         var element = $("<div>" + currentTime + " " + message + "</div>");
 			$('#console').prepend(element);
 		}
