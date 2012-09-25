@@ -15,7 +15,7 @@ public class NamespaceChatLauncher {
         final SocketIONamespace chat1namespace = server.addNamespace("/chat1");
         chat1namespace.addJsonObjectListener(ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, ChatObject data) {
+            public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
                 // broadcast messages to all clients
                 chat1namespace.getBroadcastOperations().sendJsonObject(data);
             }
@@ -24,7 +24,7 @@ public class NamespaceChatLauncher {
         final SocketIONamespace chat2namespace = server.addNamespace("/chat2");
         chat2namespace.addJsonObjectListener(ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, ChatObject data) {
+            public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
                 // broadcast messages to all clients
                 chat2namespace.getBroadcastOperations().sendJsonObject(data);
             }

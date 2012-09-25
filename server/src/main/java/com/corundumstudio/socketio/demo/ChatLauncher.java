@@ -14,7 +14,7 @@ public class ChatLauncher {
         final SocketIOServer server = new SocketIOServer(config);
         server.addJsonObjectListener(ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, ChatObject data) {
+            public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
                 // broadcast messages to all clients
                 server.getBroadcastOperations().sendJsonObject(data);
             }

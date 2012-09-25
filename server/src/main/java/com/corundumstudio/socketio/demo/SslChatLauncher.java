@@ -2,6 +2,7 @@ package com.corundumstudio.socketio.demo;
 
 import java.io.InputStream;
 
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -22,7 +23,7 @@ public class SslChatLauncher {
         final SocketIOServer server = new SocketIOServer(config);
         server.addEventListener("chatevent", ChatObject.class, new DataListener<ChatObject>() {
             @Override
-            public void onData(SocketIOClient client, ChatObject data) {
+            public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
                 server.getBroadcastOperations().sendEvent("chatevent", data);
             }
         });
