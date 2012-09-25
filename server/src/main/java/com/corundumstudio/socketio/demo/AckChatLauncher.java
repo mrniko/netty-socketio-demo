@@ -2,6 +2,7 @@ package com.corundumstudio.socketio.demo;
 
 import com.corundumstudio.socketio.AckCallback;
 import com.corundumstudio.socketio.AckRequest;
+import com.corundumstudio.socketio.BroadcastAckCallback;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -28,27 +29,41 @@ public class AckChatLauncher {
                 }
 
                 // send message back to client with ack callback WITH data
-                client.sendJsonObject(data, new AckCallback<String>(String.class) {
+                ChatObject ackChatObjectData = new ChatObject(data.getUserName(), "message with ack data");
+                client.sendJsonObject(ackChatObjectData, new AckCallback<String>(String.class) {
                     @Override
                     public void onSuccess(String result) {
                         System.out.println("ack from client: " + client.getSessionId() + " data: " + result);
                     }
                 });
 
-                try {
-                    // send message back to client with ack callback WITHOUT data
-                    client.sendJsonObject(data, new VoidAckCallback() {
-                        @Override
-                        public void onSuccess() {
-                            System.out.println("ack from client: " + client.getSessionId());
-                        }
-                    });
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+                // send message back to client with ack callback WITHOUT data
+                ChatObject ackChatObject = new ChatObject(data.getUserName(), "message without ack data");
+                client.sendJsonObject(ackChatObject, new VoidAckCallback() {
+                    @Override
+                    public void onSuccess() {
+                        System.out.println("ack from client: " + client.getSessionId());
+                    }
+                });
 
                 // send broadcast message to clients with broadcast-ack
+                ChatObject broadcastObject = new ChatObject(data.getUserName(), "broadcast message with ack data");
+                server.getBroadcastOperations().sendJsonObject(broadcastObject, new BroadcastAckCallback<String>(String.class) {
+                    @Override
+                    protected void onClientSuccess(SocketIOClient client, String result) {
+                        System.out.println("ack from client in broadcast: " + client.getSessionId() + " data: " + result);
+                    }
 
+                    @Override
+                    protected void onClientTimeout(SocketIOClient client) {
+                        System.out.println("ack timeout from client in broadcast: " + client.getSessionId());
+                    }
+
+                    @Override
+                    protected void onAllSuccess() {
+                        System.out.println("all broadcast ack delivered to clients!");
+                    }
+                });
 
             }
         });
