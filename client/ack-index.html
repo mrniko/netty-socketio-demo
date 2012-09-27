@@ -59,9 +59,9 @@
                                           userName: userName, 
                                           message: message};
 
-                        socket.json.send(jsonObject, function(ackDataFromServer) {
+                        socket.json.send(jsonObject, function(arg1, arg2) {
                             // ack data received from server
-                            alert(ackDataFromServer);
+                            alert("arg1: " + arg1 + ", arg2: " + arg2);
                         });
 		}
 		

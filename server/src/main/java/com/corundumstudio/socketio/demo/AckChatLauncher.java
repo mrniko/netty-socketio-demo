@@ -25,7 +25,7 @@ public class AckChatLauncher {
                 // check is ack requested by client
                 if (ackRequest.isAckRequested()) {
                     // send ack response with data to client
-                    ackRequest.sendAckData("client message was delivered to server!");
+                    ackRequest.sendAckData("client message was delivered to server!", "yeah!");
                 }
 
                 // send message back to client with ack callback WITH data
