@@ -1,6 +1,6 @@
 #Netty-socketio Demo
 
-Demo for Netty-socketio project.
+Demo for [Netty-socketio](https://github.com/mrniko/netty-socketio) project.
 
 #Usage example
 
