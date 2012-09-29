@@ -22,7 +22,8 @@ public class AckChatLauncher {
             @Override
             public void onData(final SocketIOClient client, ChatObject data, final AckRequest ackRequest) {
 
-                // check is ack requested by client
+                // check is ack requested by client,
+                // but it's not required check
                 if (ackRequest.isAckRequested()) {
                     // send ack response with data to client
                     ackRequest.sendAckData("client message was delivered to server!", "yeah!");
