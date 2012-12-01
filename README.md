@@ -14,7 +14,7 @@ Demo for [Netty-socketio](https://github.com/mrniko/netty-socketio) project.
 
 4. Run client in browser, by opening* file /client/index.html
 
-* If you want to open index.html in Chrome browser you need to host it somewhere (nginx, for example),
+ **WARNING:** If you want to open index.html in Chrome or IE browser you need to host it somewhere (nginx or apache, for example),
  or page will not work due to absence of correct "origin" http header.
 
 #Demo scenarios
