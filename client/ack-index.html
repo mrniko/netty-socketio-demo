@@ -29,7 +29,7 @@
 
                 var userName = 'user' + Math.floor((Math.random()*1000)+1);
 
-		var socket =  io.connect('http://localhost:9092', {'transports': ['xhr-polling']});
+		var socket =  io.connect('http://localhost:9092');
 
 		socket.on('connect', function() {
 			output('<span class="connect-msg">Client has connected to the server!</span>');
@@ -47,6 +47,20 @@
 			output('<span class="disconnect-msg">The client has disconnected!</span>');
 		});
 
+		socket.on('ackevent2', function(data, ackServerCallback, arg1) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+                        if (ackServerCallback) {
+                           ackServerCallback('server message was delivered to client!');
+                        }
+		});
+
+		socket.on('ackevent3', function(data, ackServerCallback) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+                        if (ackServerCallback) {
+                           ackServerCallback();
+                        }
+		});
+
                 function sendDisconnect() {
                         socket.disconnect();
                 }
@@ -59,9 +73,8 @@
                                           userName: userName, 
                                           message: message};
 
-                        socket.json.send(jsonObject, function(arg1, arg2) {
-                            // ack data received from server
-                            alert("arg1: " + arg1 + ", arg2: " + arg2);
+                        socket.emit('ackevent1', jsonObject, function(arg1, arg2) {
+                            alert("ack from server! arg1: " + arg1 + ", arg2: " + arg2);
                         });
 		}
 		
