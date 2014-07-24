@@ -12,11 +12,11 @@ public class ChatLauncher {
         config.setPort(9092);
 
         final SocketIOServer server = new SocketIOServer(config);
-        server.addJsonObjectListener(ChatObject.class, new DataListener<ChatObject>() {
+        server.addEventListener("chatevent", ChatObject.class, new DataListener<ChatObject>() {
             @Override
             public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
                 // broadcast messages to all clients
-                server.getBroadcastOperations().sendJsonObject(data);
+                server.getBroadcastOperations().sendEvent("chatevent", data);
             }
         });
 

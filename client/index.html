@@ -35,7 +35,7 @@
 			output('<span class="connect-msg">Client has connected to the server!</span>');
 		});
 		
-		socket.on('message', function(data) {
+		socket.on('chatevent', function(data) {
 			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
 		});
 		
@@ -59,10 +59,9 @@
                         // TIP: you can customize type name field
                         // via Configuration.jsonTypeFieldName property
                         
-                        var jsonObject = {'@class': 'com.corundumstudio.socketio.demo.ChatObject',
-                                          userName: userName, 
+                        var jsonObject = {userName: userName, 
                                           message: message};
-                        socket.json.send(jsonObject);
+                        socket.emit('chatevent', jsonObject);
 		}
 		
 		function output(message) {
