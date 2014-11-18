@@ -37,7 +37,7 @@
   <dependency>
       <groupId>com.corundumstudio.socketio</groupId>
       <artifactId>netty-socketio</artifactId>
-      <version>1.7.3</version>
+      <version>1.7.4</version>
   </dependency>
   <dependency>
       <groupId>org.slf4j</groupId>
@@ -66,7 +66,12 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>3.2</version>
+        <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <encoding>UTF-8</encoding>
+        </configuration>
       </plugin>
     </plugins>
   </build>
