@@ -35,6 +35,8 @@ There are several demo scenarios available:
 
  `com.corundumstudio.socketio.demo.AckChatLauncher` - `/client/ack-index.html`
 
+ `com.corundumstudio.socketio.demo.BinaryEventLauncher` - `/client/binary-event-index.html`
+
 
 You can select appropriate server launcher by command with `main.class` parameter:
 
