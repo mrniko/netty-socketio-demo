@@ -6,6 +6,7 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.Transport;
 import com.corundumstudio.socketio.listener.DataListener;
 
 public class BinaryEventLauncher {
@@ -15,6 +16,8 @@ public class BinaryEventLauncher {
         Configuration config = new Configuration();
         config.setHostname("localhost");
         config.setPort(9092);
+        config.setMaxFramePayloadLength(1024 * 1024);
+        config.setMaxHttpContentLength(1024 * 1024);
 
         final SocketIOServer server = new SocketIOServer(config);
 
