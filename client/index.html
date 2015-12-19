@@ -53,14 +53,6 @@
                         var message = $('#msg').val();
                         $('#msg').val('');
                         
-                        // don't forget to define type field '@class' 
-                        // it should equals to class name which used 
-                        // to deserialize object on server side
-                        // via ...addJsonObjectListener() method
-                        //
-                        // TIP: you can customize type name field
-                        // via Configuration.jsonTypeFieldName property
-                        
                         var jsonObject = {userName: userName, 
                                           message: message};
                         socket.emit('chatevent', jsonObject);
