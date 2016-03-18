@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-        
+
         <title>Demo Chat</title>
 
         <link href="bootstrap.css" rel="stylesheet">
 
 	<style>
-		body { 
+		body {
 			padding:20px;
 		}
-		.console { 
-			height: 400px; 
-			overflow: auto; 
+		.console {
+			height: 400px;
+			overflow: auto;
 		}
 		.username-msg {color:orange;}
 		.connect-msg {color:green;}
@@ -24,7 +24,7 @@
 	<script src="js/socket.io/socket.io.js"></script>
         <script src="js/moment.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	
+
 	<script>
 
                 var userName1 = 'user1_' + Math.floor((Math.random()*1000)+1);
@@ -54,9 +54,9 @@
 		function sendMessageHandler(parentId, userName, chatSocket) {
                         var message = $(parentId + ' .msg').val();
                         $(parentId + ' .msg').val('');
-                        
+
                         var jsonObject = {'@class': 'com.corundumstudio.socketio.demo.ChatObject',
-                                          userName: userName, 
+                                          userName: userName,
                                           message: message};
                         chatSocket.json.send(jsonObject);
 		}
@@ -64,17 +64,17 @@
 
 		chat1Socket.on('connect', connectHandler('#chat1'));
                 chat2Socket.on('connect', connectHandler('#chat2'));
-		
+
 		chat1Socket.on('message', messageHandler('#chat1'));
                 chat2Socket.on('message', messageHandler('#chat2'));
-		
+
 		chat1Socket.on('disconnect', disconnectHandler('#chat1'));
                 chat2Socket.on('disconnect', disconnectHandler('#chat2'));
 
                 function sendDisconnect1() {
                         chat1Socket.disconnect();
                 }
-		
+
                 function sendDisconnect2() {
                         chat2Socket.disconnect();
                 }
@@ -87,20 +87,25 @@
                         sendMessageHandler('#chat2', userName2, chat2Socket);
 		}
 
-		
+
 		function output(message, parentId) {
                         var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
                         var element = $("<div>" + currentTime + " " + message + "</div>");
 			$(parentId + ' .console').prepend(element);
 		}
-		
+
+        $(document).keydown(function(e){
+            if(e.keyCode == 13) {
+                $('#send').click();
+            }
+        });
 	</script>
 </head>
 
 <body>
-	
+
 	<h1>Namespaces demo chat</h1>
-	
+
 	<br/>
 
         <div id="chat1" style="width: 49%; float: left;">
@@ -110,7 +115,7 @@
 
             <form class="well form-inline" onsubmit="return false;">
                <input class="msg input-xlarge" type="text" placeholder="Type something..."/>
-               <button type="button" onClick="sendMessage1()" class="btn">Send</button>
+               <button type="button" onClick="sendMessage1()" class="btn" id="send">Send</button>
                <button type="button" onClick="sendDisconnect1()" class="btn">Disconnect</button>
             </form>
         </div>
@@ -122,13 +127,13 @@
 
             <form class="well form-inline" onsubmit="return false;">
                <input class="msg input-xlarge" type="text" placeholder="Type something..."/>
-               <button type="button" onClick="sendMessage2()" class="btn">Send</button>
+               <button type="button" onClick="sendMessage2()" class="btn" id="send">Send</button>
                <button type="button" onClick="sendDisconnect2()" class="btn">Disconnect</button>
             </form>
         </div>
 
 
-	
+
 </body>
 
 </html>

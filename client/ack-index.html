@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        
+
         <meta charset="utf-8" />
 
         <title>Demo Chat</title>
@@ -9,12 +9,12 @@
         <link href="bootstrap.css" rel="stylesheet">
 
 	<style>
-		body { 
+		body {
 			padding:20px;
 		}
-		#console { 
-			height: 400px; 
-			overflow: auto; 
+		#console {
+			height: 400px;
+			overflow: auto;
 		}
 		.username-msg {color:orange;}
 		.connect-msg {color:green;}
@@ -26,7 +26,7 @@
 	<script src="js/socket.io/socket.io.js"></script>
         <script src="js/moment.min.js"></script>
         <script src="js/jquery-1.7.2.min.js"></script>
-	
+
 	<script>
 
                 var userName = 'user' + Math.floor((Math.random()*1000)+1);
@@ -36,7 +36,7 @@
 		socket.on('connect', function() {
 			output('<span class="connect-msg">Client has connected to the server!</span>');
 		});
-		
+
 		socket.on('message', function(data, ackServerCallback) {
 			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
 			if (ackServerCallback) {
@@ -44,7 +44,7 @@
                         	ackServerCallback('server message was delivered to client!');
                         }
 		});
-		
+
 		socket.on('disconnect', function() {
 			output('<span class="disconnect-msg">The client has disconnected!</span>');
 		});
@@ -66,33 +66,39 @@
                 function sendDisconnect() {
                         socket.disconnect();
                 }
-		
+
 		function sendMessage() {
                         var message = $('#msg').val();
                         $('#msg').val('');
-                        
+
                         var jsonObject = {'@class': 'com.corundumstudio.socketio.demo.ChatObject',
-                                          userName: userName, 
+                                          userName: userName,
                                           message: message};
 
                         socket.emit('ackevent1', jsonObject, function(arg1, arg2) {
                             alert("ack from server! arg1: " + arg1 + ", arg2: " + arg2);
                         });
 		}
-		
+
 		function output(message) {
                         var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
                         var element = $("<div>" + currentTime + " " + message + "</div>");
 			$('#console').prepend(element);
 		}
-		
+
+        $(document).keydown(function(e){
+            if(e.keyCode == 13) {
+                $('#send').click();
+            }
+        });
+
 	</script>
 </head>
 
 <body>
-	
+
 	<h1>Netty-socketio Demo Chat</h1>
-	
+
 	<br/>
 
 	<div id="console" class="well">
@@ -100,12 +106,12 @@
 
         <form class="well form-inline" onsubmit="return false;">
            <input id="msg" class="input-xlarge" type="text" placeholder="Type something..."/>
-           <button type="button" onClick="sendMessage()" class="btn">Send</button>
+           <button type="button" onClick="sendMessage()" class="btn" id="send">Send</button>
            <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
         </form>
-    
 
-	
+
+
 </body>
 
 </html>
