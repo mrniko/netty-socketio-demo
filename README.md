@@ -1,8 +1,8 @@
-#Netty-socketio Demo
+# Netty-socketio Demo
 
 Demo for [Netty-socketio](https://github.com/mrniko/netty-socketio) project.
 
-#Usage example
+# Usage example
 
 1. Build or install Netty-socketio lib to your maven repository.
    `mvn clean install`
@@ -18,7 +18,7 @@ Demo for [Netty-socketio](https://github.com/mrniko/netty-socketio) project.
  If you want to open index.html in Chrome or IE browser you need to host it somewhere (nginx or apache, for example),
  or page will not work due to absence of correct "origin" http header.
 
-#Demo scenarios
+# Demo scenarios
 
 By default you will run a chat which communcate with server via json objects.
 There are several demo scenarios available:
